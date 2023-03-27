@@ -6,6 +6,7 @@ import com.appcasal.api.dto.request.IngredienteRequestDTO;
 import com.appcasal.api.dto.response.IngredienteResponseDTO;
 import com.appcasal.domain.model.Ingrediente;
 import com.appcasal.domain.service.IngredienteService;
+import com.appcasal.domain.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class IngredienteController {
 
     @Autowired
     private IngredienteService service;
+    @Autowired
+    private ReceitaService receitaService;
 
     @Autowired
     private IngredienteResponseAssembler assembler;
@@ -26,19 +29,23 @@ public class IngredienteController {
     @Autowired
     private IngredienteRequestDisassembler disassembler;
 
-//    @GetMapping
-//    public List<IngredienteResponseDTO> findAll() {
-//        List<Ingrediente> ingredientes = service.findAll();
-//
-//        return assembler.toCollectionModel(ingredientes);
-//    }
+    @RequestMapping(value = "/{receitaId}", method = RequestMethod.GET)
+    public List<IngredienteResponseDTO> getIngredientesByReceita(@PathVariable("receitaId") Integer receitaId) {
+        List<Ingrediente> ingredientes = service.getIngredientesByReceita(receitaId);
+
+        return assembler.toCollectionModel(ingredientes);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public IngredienteResponseDTO add(@RequestBody @Valid IngredienteRequestDTO ingredienteRequestDTO) {
-        Ingrediente ingrediente = disassembler.toDomainObject(ingredienteRequestDTO);
+    public IngredienteResponseDTO add(@RequestBody @Valid List<IngredienteRequestDTO> ingredientesRequestDTO) {
 
-        ingrediente = service.add(ingrediente);
+        Ingrediente ingrediente = null;
+
+        for (IngredienteRequestDTO ingredienteRequestDTO : ingredientesRequestDTO) {
+            ingrediente = disassembler.toDomainObject(ingredienteRequestDTO);
+            ingrediente = service.add(ingrediente);
+        }
 
         return assembler.toDTO(ingrediente);
     }
@@ -52,6 +59,23 @@ public class IngredienteController {
         ingrediente = service.add(ingrediente);
 
         return assembler.toDTO(ingrediente);
+    }
+
+    @PutMapping("marcou/{id}/{marcado}")
+    public void marcou(@PathVariable("marcado") Boolean marcado, @PathVariable("id") Integer id) {
+        Ingrediente ingrediente = service.getById(id);
+        ingrediente.setMarcado(marcado);
+        service.add(ingrediente);
+    }
+
+    @PutMapping("desmarcarTodos/{receitaId}")
+    public void desmarcarTodos(@PathVariable("receitaId") Integer receitaId) {
+        List<Ingrediente> ingredientes = receitaService.getById(receitaId).getIngredientes();
+
+        for (Ingrediente ingrediente : ingredientes) {
+            ingrediente.setMarcado(false);
+            service.add(ingrediente);
+        }
     }
 
     @DeleteMapping("/{id}")

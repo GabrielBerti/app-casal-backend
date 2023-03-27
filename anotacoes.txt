@@ -1,0 +1,3 @@
+-- trocar ids de int para long
+-- trocar datas de string para date
+-- endpoint de filtro por nome na meta, receita e viagem

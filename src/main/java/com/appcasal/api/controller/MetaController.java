@@ -60,4 +60,10 @@ public class MetaController {
         service.delete(id);
     }
 
+    @GetMapping("/filterByConcluidas/{tipoFiltro}")
+    public List<MetaResponseDTO> getMetasByType(@PathVariable("tipoFiltro") Boolean tipoFiltro) {
+        List<Meta> metas = service.getMetasByType(tipoFiltro);
+        return assembler.toCollectionModel(metas);
+    }
+
 }

@@ -19,6 +19,10 @@ public class IngredienteService {
         return repository.findAll();
     }
 
+    public List<Ingrediente> getIngredientesByReceita(Integer fkReceita) {
+        return repository.getIngredientesByReceita(fkReceita);
+    }
+
     public Ingrediente getById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ItemNaoEncontradoException(id));
     }

@@ -1,10 +1,12 @@
 package com.appcasal.api.controller;
 
+import com.appcasal.api.assembler.ResumoResponseAssembler;
 import com.appcasal.api.assembler.TransacaoRequestDisassembler;
 import com.appcasal.api.assembler.TransacaoResponseAssembler;
 import com.appcasal.api.dto.request.TransacaoRequestDTO;
+import com.appcasal.api.dto.response.ResumoResponseDTO;
 import com.appcasal.api.dto.response.TransacaoResponseDTO;
-import com.appcasal.domain.model.Tipo;
+import com.appcasal.domain.model.Resumo;
 import com.appcasal.domain.model.Transacao;
 import com.appcasal.domain.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class TransacaoController {
 
     @Autowired
     private TransacaoResponseAssembler assembler;
+    @Autowired
+    private ResumoResponseAssembler resumoAssembler;
 
     @Autowired
     private TransacaoRequestDisassembler disassembler;
@@ -32,6 +36,13 @@ public class TransacaoController {
         List<Transacao> transacoes = service.findAll();
 
         return assembler.toCollectionModel(transacoes);
+    }
+
+    @GetMapping("/recuperaResumo")
+    public ResumoResponseDTO recuperaResumo() {
+       Resumo resumo = service.getValorTransacaoByType();
+
+       return resumoAssembler.toDTO(resumo);
     }
 
     @PostMapping

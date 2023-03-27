@@ -34,4 +34,7 @@ public class MetaService {
             throw new ItemNaoEncontradoException(id);
         }
     }
+    public List<Meta> getMetasByType(Boolean tipoFiltroMeta) {
+        return repository.getMetasByType(tipoFiltroMeta) ;
+    }
 }
