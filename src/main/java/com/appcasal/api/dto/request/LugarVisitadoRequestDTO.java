@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class LugarVisitadoRequestDTO {
     private Integer id;
-
     @NotBlank
     private String nome;
     private double nota;

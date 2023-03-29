@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/lugares-visitados") // por Default essa sera a URI atendida
@@ -25,12 +26,12 @@ public class LugarVisitadoController {
     @Autowired
     private LugarVisitadoRequestDisassembler disassembler;
 
-//    @GetMapping
-//    public List<IngredienteResponseDTO> findAll() {
-//        List<Ingrediente> ingredientes = service.findAll();
-//
-//        return assembler.toCollectionModel(ingredientes);
-//    }
+    @RequestMapping(value = "/{viagemId}", method = RequestMethod.GET)
+    public List<LugarVisitadoResponseDTO> getLugaresVisitadosByViagem(@PathVariable("viagemId") Integer viagemId) {
+        List<LugarVisitado> lugaresVisitados = service.getLugaresVisitadosByViagem(viagemId);
+
+        return assembler.toCollectionModel(lugaresVisitados);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/gastos-viagem") // por Default essa sera a URI atendida
@@ -25,12 +26,12 @@ public class GastoViagemController {
     @Autowired
     private GastoViagemRequestDisassembler disassembler;
 
-//    @GetMapping
-//    public List<IngredienteResponseDTO> findAll() {
-//        List<Ingrediente> ingredientes = service.findAll();
-//
-//        return assembler.toCollectionModel(ingredientes);
-//    }
+    @RequestMapping(value = "/{viagemId}", method = RequestMethod.GET)
+    public List<GastoViagemResponseDTO> getGastosViagemByViagem(@PathVariable("viagemId") Integer viagemId) {
+        List<GastoViagem> gastoViagens = service.getGastosViagemByViagem(viagemId);
+
+        return assembler.toCollectionModel(gastoViagens);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

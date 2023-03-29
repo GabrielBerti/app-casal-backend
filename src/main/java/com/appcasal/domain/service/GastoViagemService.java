@@ -15,8 +15,8 @@ public class GastoViagemService {
     @Autowired
     GastoViagemRepository repository;
 
-    public List<GastoViagem> findAll() {
-        return repository.findAll();
+    public List<GastoViagem> getGastosViagemByViagem(Integer fkViagem) {
+        return repository.getGastosViagemByViagem(fkViagem);
     }
 
     public GastoViagem getById(Integer id) {

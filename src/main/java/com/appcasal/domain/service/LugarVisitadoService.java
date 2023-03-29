@@ -15,8 +15,8 @@ public class LugarVisitadoService {
     @Autowired
     LugarVisitadoRepository repository;
 
-    public List<LugarVisitado> findAll() {
-        return repository.findAll();
+    public List<LugarVisitado> getLugaresVisitadosByViagem(Integer fkViagem) {
+        return repository.getLugaresVisitadosByViagem(fkViagem);
     }
 
     public LugarVisitado getById(Integer id) {
