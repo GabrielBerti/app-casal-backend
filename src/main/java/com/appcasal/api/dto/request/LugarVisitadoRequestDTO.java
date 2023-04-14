@@ -10,7 +10,7 @@ public class LugarVisitadoRequestDTO {
     private Integer id;
     @NotBlank
     private String nome;
-    private double nota;
+    private Double nota;
     @NotNull
     private Viagem viagem;
 }

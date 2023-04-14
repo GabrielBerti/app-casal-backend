@@ -11,5 +11,5 @@ public class ViagemRequestDTO {
     private String local;
     private String dataInicio;
     private String dataFim;
-    private double nota;
+    private Double nota;
 }

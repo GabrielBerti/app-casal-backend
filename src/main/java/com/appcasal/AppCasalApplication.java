@@ -159,7 +159,6 @@ public class AppCasalApplication {
 //                .build();
 //        LugarVisitado pizzaria = LugarVisitado.builder()
 //                .nome("Pizzaria")
-//                .nota(2.5)
 //                .viagem(brotas)
 //                .build();
 //

@@ -23,7 +23,7 @@ public class LugarVisitado {
     @Column(name = "nome", nullable = false)
     private String nome;
     @Column(name = "nota")
-    private double nota;
+    private Double nota;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_viagem")

@@ -33,7 +33,7 @@ public class Viagem {
     private String dataFim;
 
     @Column(name = "nota")
-    private double nota;
+    private Double nota;
 
     @OneToMany(mappedBy = "viagem", cascade = CascadeType.REMOVE)
     private List<GastoViagem> gastosViagens = new ArrayList<>();

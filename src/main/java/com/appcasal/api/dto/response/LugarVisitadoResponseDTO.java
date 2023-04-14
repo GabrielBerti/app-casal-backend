@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class LugarVisitadoResponseDTO {
     private Integer id;
     private String nome;
-    private double nota;
+    private Double nota;
 }
