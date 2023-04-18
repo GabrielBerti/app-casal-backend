@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Data
@@ -27,10 +28,12 @@ public class Viagem {
     @Column(name = "local", nullable = false)
     private String local;
     @Column(name = "dataInicio")
-    private String dataInicio;
+    @Temporal(TemporalType.DATE)
+    private Calendar dataInicio;
 
     @Column(name = "dataFim")
-    private String dataFim;
+    @Temporal(TemporalType.DATE)
+    private Calendar dataFim;
 
     @Column(name = "nota")
     private Double nota;

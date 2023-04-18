@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 @Data
 @Builder
@@ -30,5 +31,6 @@ public class Transacao {
     private Tipo tipo;
 
     @Column(name = "data", nullable = false)
-    private String data;
+    @Temporal(TemporalType.DATE)
+    private Calendar data;
 }

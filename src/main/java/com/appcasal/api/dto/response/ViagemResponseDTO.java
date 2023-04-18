@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 @Data
 @Builder
@@ -16,8 +17,8 @@ public class ViagemResponseDTO {
     private Integer id;
     @NotBlank
     private String local;
-    private String dataInicio;
-    private String dataFim;
+    private Calendar dataInicio;
+    private Calendar dataFim;
     private Double nota;
     private ArrayList<LugarVisitadoResponseDTO> lugaresVisitados;
     private ArrayList<GastoViagemResponseDTO> gastosViagem;

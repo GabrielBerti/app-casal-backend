@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 @Data
 public class TransacaoRequestDTO {
@@ -16,6 +17,6 @@ public class TransacaoRequestDTO {
     private String descricao;
     @NotNull
     private Tipo tipo;
-    @NotBlank
-    private String data;
+    @NotNull
+    private Calendar data;
 }

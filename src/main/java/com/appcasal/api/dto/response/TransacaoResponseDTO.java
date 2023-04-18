@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 @Data
 @Builder
@@ -16,5 +17,5 @@ public class TransacaoResponseDTO {
     private BigDecimal valor;
     private String descricao;
     private Tipo tipo;
-    private String data;
+    private Calendar data;
 }
