@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface LugarVisitadoRepository extends JpaRepository<LugarVisitado, Integer> {
 
-    @Query(value = "SELECT * FROM LUGAR_VISITADO WHERE FK_VIAGEM = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM LUGAR_VISITADO WHERE FK_VIAGEM = ?1 ORDER BY NOME", nativeQuery = true)
     List<LugarVisitado> getLugaresVisitadosByViagem(Integer fkViagem);
 }
