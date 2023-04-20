@@ -11,4 +11,7 @@ public interface ReceitaRepository extends JpaRepository<Receita, Integer> {
     @Query(value = "SELECT * FROM RECEITA ORDER BY NOME", nativeQuery = true)
     List<Receita> findAll();
 
+    @Query(value = "SELECT * FROM RECEITA WHERE UPPER(NOME) LIKE CONCAT('%', UPPER(?1), '%') ORDER BY NOME", nativeQuery = true)
+    List<Receita> getReceitaByNome(String search);
+
 }

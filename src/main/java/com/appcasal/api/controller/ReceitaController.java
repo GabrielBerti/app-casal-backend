@@ -26,9 +26,16 @@ public class ReceitaController {
     @Autowired
     private ReceitaRequestDisassembler disassembler;
 
+//    @GetMapping
+//    public List<ReceitaResponseDTO> findAll() {
+//        List<Receita> receitas = service.findAll();
+//
+//        return assembler.toCollectionModel(receitas);
+//    }
+
     @GetMapping
-    public List<ReceitaResponseDTO> findAll() {
-        List<Receita> receitas = service.findAll();
+    public List<ReceitaResponseDTO> getReceitas(@RequestParam(value = "search", required = false) String search) {
+        List<Receita> receitas = service.getReceitas(search);
 
         return assembler.toCollectionModel(receitas);
     }

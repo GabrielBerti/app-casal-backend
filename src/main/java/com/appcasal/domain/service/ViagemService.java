@@ -17,8 +17,12 @@ public class ViagemService {
     @Autowired
     ViagemRepository repository;
 
-    public List<Viagem> findAll() {
-        return repository.findAll();
+    public List<Viagem> getViagensByNome(String search) {
+        if(search != null) {
+            return repository.getViagensByNome(search);
+        } else {
+            return repository.findAll();
+        }
     }
 
     public Viagem getById(Integer id) {

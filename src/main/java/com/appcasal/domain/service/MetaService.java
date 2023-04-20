@@ -34,7 +34,16 @@ public class MetaService {
             throw new ItemNaoEncontradoException(id);
         }
     }
-    public List<Meta> getMetasByType(Boolean tipoFiltroMeta) {
-        return repository.getMetasByType(tipoFiltroMeta) ;
+    public List<Meta> getMetas(Boolean tipoFiltroMeta, String search) {
+
+        if (tipoFiltroMeta != null && search != null) {
+            return repository.getMetas(tipoFiltroMeta, search);
+        } else if(tipoFiltroMeta != null && search == null) {
+            return repository.getMetasByConcluido(tipoFiltroMeta);
+        } else if(tipoFiltroMeta == null && search != null) {
+            return repository.getMetasByDescricao(search);
+        } else {
+            return repository.findAll();
+        }
     }
 }

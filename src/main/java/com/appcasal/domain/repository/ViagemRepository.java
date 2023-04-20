@@ -11,4 +11,7 @@ public interface ViagemRepository extends JpaRepository<Viagem, Integer> {
     @Query(value = "SELECT * FROM VIAGEM ORDER BY DATA_INICIO", nativeQuery = true)
     List<Viagem> findAll();
 
+    @Query(value = "SELECT * FROM VIAGEM WHERE UPPER(LOCAL) LIKE CONCAT('%', UPPER(?1), '%') ORDER BY DATA_INICIO", nativeQuery = true)
+    List<Viagem> getViagensByNome(String search);
+
 }

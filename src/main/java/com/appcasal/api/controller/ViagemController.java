@@ -26,9 +26,16 @@ public class ViagemController {
     @Autowired
     private ViagemRequestDisassembler disassembler;
 
+//    @GetMapping
+//    public List<ViagemResponseDTO> findAll() {
+//        List<Viagem> viagens = service.findAll();
+//
+//        return assembler.toCollectionModel(viagens);
+//    }
+
     @GetMapping
-    public List<ViagemResponseDTO> findAll() {
-        List<Viagem> viagens = service.findAll();
+    public List<ViagemResponseDTO> getViagens(@RequestParam(value = "search", required = false) String search) {
+        List<Viagem> viagens = service.getViagensByNome(search);
 
         return assembler.toCollectionModel(viagens);
     }

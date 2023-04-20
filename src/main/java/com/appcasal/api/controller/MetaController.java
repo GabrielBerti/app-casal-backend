@@ -26,12 +26,12 @@ public class MetaController {
     @Autowired
     private MetaRequestDisassembler disassembler;
 
-    @GetMapping
-    public List<MetaResponseDTO> findAll() {
-        List<Meta> metas = service.findAll();
-
-        return assembler.toCollectionModel(metas);
-    }
+//    @GetMapping
+//    public List<MetaResponseDTO> findAll() {
+//        List<Meta> metas = service.findAll();
+//
+//        return assembler.toCollectionModel(metas);
+//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -60,9 +60,9 @@ public class MetaController {
         service.delete(id);
     }
 
-    @GetMapping("/filterByConcluidas/{tipoFiltro}")
-    public List<MetaResponseDTO> getMetasByType(@PathVariable("tipoFiltro") Boolean tipoFiltro) {
-        List<Meta> metas = service.getMetasByType(tipoFiltro);
+    @GetMapping()
+    public List<MetaResponseDTO> getMetas(@RequestParam(value = "concluidas", required = false) Boolean tipoFiltro, @RequestParam(value = "search", required = false) String search) {
+        List<Meta> metas = service.getMetas(tipoFiltro, search);
         return assembler.toCollectionModel(metas);
     }
 

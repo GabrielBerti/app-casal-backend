@@ -19,6 +19,14 @@ public class ReceitaService {
         return repository.findAll();
     }
 
+    public List<Receita> getReceitas(String search) {
+        if(search != null) {
+            return repository.getReceitaByNome(search);
+        } else {
+            return repository.findAll();
+        }
+    }
+
     public Receita getById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ItemNaoEncontradoException(id));
     }
