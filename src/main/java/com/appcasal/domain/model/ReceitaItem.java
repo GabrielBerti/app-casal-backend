@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "receita_item")
+//@Entity
+//@Table(name = "receita_item")
 public class ReceitaItem {
 
     @EmbeddedId

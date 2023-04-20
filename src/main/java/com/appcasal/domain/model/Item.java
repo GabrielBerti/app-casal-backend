@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "item")
+//@Entity
+//@Table(name = "item")
 public class Item {
 
 //    private static final long serialVersionUID = 1L;
