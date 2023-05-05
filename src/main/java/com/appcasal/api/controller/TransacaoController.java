@@ -44,8 +44,7 @@ public class TransacaoController {
 
        return resumoAssembler.toDTO(resumo);
     }
-
-    @PostMapping("/inserir")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TransacaoResponseDTO add(@RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) {
         Transacao transacao = disassembler.toDomainObject(transacaoRequestDTO);
