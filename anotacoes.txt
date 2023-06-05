@@ -1,3 +1,0 @@
--- criar aplication.properties dev e prod
--- subir aplication.properties prod como update none
--- ocultar credenciais
